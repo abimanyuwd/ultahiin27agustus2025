@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Sayangkuuu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #1a1a2e; color: #e0e0e0; overflow-y: auto; overflow-x: hidden; }
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .section-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+        .section-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+        }
+        .next-button {
+            margin-top: 2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            transition: background-color 0.3s;
+        }
+        .next-button:hover { background-color: rgba(255, 255, 255, 0.2); }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+        #kado-box { transition: transform 0.3s ease; }
+        #kado-box:hover { transform: scale(1.1); }
+        #isi-kado { transition: all 0.5s ease; max-height: 0; overflow: hidden; opacity: 0; }
+        #isi-kado.terbuka { max-height: 500px; opacity: 1; margin-top: 1.5rem; }
+        /* Efek fade-in untuk foto */
+        .fade-in-photo { opacity: 0; transform: scale(0.95); animation: fadeIn 1.5s forwards; }
+        @keyframes fadeIn { to { opacity: 1; transform: scale(1); } }
+        /* Frame romantis */
+        .romantic-frame { border: 6px solid rgba(255, 182, 193, 0.7); box-shadow: 0 0 20px rgba(255, 192, 203, 0.6); position: relative; }
+        /* Hati melayang */
+        .heart {
+            position: absolute;
+            color: pink;
+            font-size: 1.5rem;
+            animation: floatUp 4s linear infinite;
+            opacity: 0.8;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <audio id="background-music" loop src="lagu-ultah.mp3"></audio>
+    <audio id="sound-effect-pop" src="https://github.com/maykbrito/devlinks/raw/main/assets/pop.mp3"></audio>
+
+    <main id="main-content">
+        <section id="s1" class="section-container visible">
+            <h1 class="font-serif-display text-4xl md:text-5xl mb-4 text-white">Selamat Ulang Tahun Sayangkuuu</h1>
+            <p class="text-base md:text-lg mb-8 max-w-sm">Sebelum kita mulai, coba sebutinn nama orang paling istimewa yang hari ini lagi berbahagia…</p>
+            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
+                <input id="nama-input" type="text" placeholder="Tuliskan Namamu" class="w-full px-5 py-3 rounded-full bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-400 transition text-center text-white placeholder-gray-400">
+                <button id="btn-mulai" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-bold transition-transform hover:scale-105">Mulai</button>
+            </div>
+        </section>
+
+        <section id="s2" class="section-container hidden">
+            <p class="text-base md:text-lg mb-4">Untuk <span class="nama-span font-bold text-purple-300"></span>,</p>
+            <img src="https://media.tenor.com/cWrVaANWYxEAAAAm/peach-goma-peach-and-goma.webp" alt="Stiker Bintang" class="w-48 h-48 mx-auto rounded-lg mb-6">
+            <h2 class="font-serif-display text-3xl md:text-4xl text-white max-w-2xl leading-tight">Hari ini hari spesial kamuu, karena tepat di hari ini sayang dilahirkan. Mas bersyukur banget masih bisa nemenin kamu sampai saat ini</h2>
+            <button class="next-button" data-next="s3">⬇️</button>
+        </section>
+
+        <section id="s3" class="section-container hidden">
+            <p class="text-base md:text-lg mb-4">Doa mas untuk sayang</p>
+            <img src="https://media.tenor.com/yYPx78UOFc0AAAAm/quby-cute.webp" alt="Stiker Doa" class="w-48 h-48 mx-auto rounded-lg mb-6">
+            <h2 class="font-serif-display text-3xl md:text-4xl text-white max-w-3xl leading-tight">Semoga panjang umur, sehat selalu, dan semua mimpi sayangg bisa tercapai dengan lancarr</h2>
+            <button class="next-button" data-next="s4_bunga">⬇️</button>
+        </section>
+
+        <section id="s4_bunga" class="section-container hidden">
+            <h2 class="font-serif-display text-3xl md:text-4xl text-white max-w-3xl leading-tight mb-8">Bunga dari mas sayang hehehe</h2>
+            <img src="https://media.tenor.com/5hNFjHWQYKQAAAAm/bubu-dudu-sseeyall.webp" alt="Bunga Mawar Mekar" class="w-full max-w-xs rounded-lg shadow-2xl object-cover h-64">
+            <!-- FOTO KAMU & IIN -->
+            <div class="relative inline-block mt-6">
+                <img src="foto-kita.jpg" alt="Foto bersama Iin" class="w-full max-w-md rounded-2xl shadow-2xl fade-in-photo romantic-frame">
+                <!-- hati melayang -->
+                <span class="heart" style="left:10%; animation-delay:0s;">❤️</span>
+                <span class="heart" style="left:40%; animation-delay:1s;">💖</span>
+                <span class="heart" style="left:70%; animation-delay:2s;">💕</span>
+            </div>
+            <button class="next-button" data-next="s5_kado">⬇️</button>
+        </section>
+
+        <section id="s5_kado" class="section-container hidden">
+            <h2 class="font-serif-display text-3xl md:text-4xl text-white max-w-3xl leading-tight mb-8">Ada sedikit hadiah dari mas... <br>Coba dibuka nggih!</h2>
+            <div id="kado-box" class="text-8xl cursor-pointer">🎁</div>
+            <div id="isi-kado" class="w-full max-w-md bg-white/10 p-6 rounded-lg border border-purple-300/50">
+                <img src="https://media.tenor.com/pwFrMcxXke4AAAAm/presents-gift.webp" alt="Stiker Kado" class="w-32 h-32 mx-auto mb-4">
+                <h3 class="text-2xl font-bold text-yellow-300">KUPON SPESIAL</h3>
+                <p class="mt-2 text-lg">Berlaku untuk: Satu traktiran es krim/kopi di tempatmu sayangg, mas pesenin kapanpun kamu mauu!</p>
+            </div>
+            <button class="next-button" data-next="s6_selamat">⬇️</button>
+        </section>
+
+        <section id="s6_selamat" class="section-container hidden">
+            <img src="https://media.tenor.com/EC7xiN7mrhEAAAAm/birthday-birthday-party.webp" alt="Stiker Ultah" class="w-48 h-48 mx-auto rounded-lg mb-6">
+            <h1 class="font-serif-display text-4xl md:text-6xl text-white mb-6">Happy Birthday, <br class="md:hidden"><span class="nama-span text-purple-300"></span>!</h1>
+            <p class="text-base md:text-lg max-w-2xl mb-8">Makasih sudah hadir di hidup mas, sayangg. Semoga hubungan kita langgeng dan lancar kedepannya.</p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                <a id="btn-wa" href="#" target="_blank" class="px-8 py-4 bg-green-500 hover:bg-green-600 rounded-full font-bold transition-transform hover:scale-105 flex items-center justify-center gap-2">Balas di WhatsApp</a>
+                <button id="btn-ulangi" class="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full font-bold transition-transform hover:scale-105">Ulangi Momen Ini</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            particlesJS("particles-js", {"particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":false},"move":{"enable":true,"speed":1,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false},"onclick":{"enable":false}}},"retina_detect":true});
+            
+            const sections = document.querySelectorAll('.section-container');
+            const nameInput = document.getElementById('nama-input');
+            const startButton = document.getElementById('btn-mulai');
+            const repeatButton = document.getElementById('btn-ulangi');
+            const nameSpans = document.querySelectorAll('.nama-span');
+            const nextButtons = document.querySelectorAll('.next-button');
+            const backgroundMusic = document.getElementById('background-music');
+            const kadoBox = document.getElementById('kado-box');
+            const isiKado = document.getElementById('isi-kado');
+            const popSound = document.getElementById('sound-effect-pop');
+            const waButton = document.getElementById('btn-wa');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                        setTimeout(() => section.classList.add('visible'), 50);
+                    } else {
+                        section.classList.add('hidden');
+                        section.classList.remove('visible');
+                    }
+                });
+                window.scrollTo(0, 0);
+            }
+
+            startButton.addEventListener('click', () => {
+                const nama = nameInput.value.trim();
+                if (nama === '') {
+                    alert('Tolong tulis namanya dulu ya :)');
+                    return;
+                }
+                nameSpans.forEach(span => { span.textContent = nama; });
+                const nomorWhatsapp = "6281273385455";
+                const pesanWhatsapp = `Masss, terima kasih banyak ya untuk ucapan ulang tahunnya, Aku sayangg banget sama kamuuu, From: ${nama}!`;
+                waButton.href = `https://wa.me/${nomorWhatsapp}?text=${encodeURIComponent(pesanWhatsapp)}`;
+                backgroundMusic.play().catch(e => console.error("Gagal memutar audio:", e));
+                showSection('s2');
+            });
+
+            repeatButton.addEventListener('click', () => {
+                showSection('s1');
+                setTimeout(() => {
+                    nameInput.value = '';
+                    isiKado.classList.remove('terbuka');
+                }, 800);
+            });
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const nextSectionId = button.dataset.next;
+                    showSection(nextSectionId);
+                });
+            });
+
+            kadoBox.addEventListener('click', () => {
+                isiKado.classList.toggle('terbuka');
+                if (isiKado.classList.contains('terbuka')) {
+                    popSound.currentTime = 0;
+                    popSound.play();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
